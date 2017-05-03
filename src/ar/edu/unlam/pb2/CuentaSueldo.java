@@ -5,6 +5,7 @@ public class CuentaSueldo {
 		private String nombre;
 		private Double saldo;
 		private Integer dni;
+		private Boolean operacionDeExtracionEfectuada;
 		
 							//constructores
 		CuentaSueldo (String nombre, Double saldo,  Integer dni)
@@ -40,16 +41,43 @@ public class CuentaSueldo {
 		}
 		
 					//metodos
-		public Double extraer(Double dineroExtraido)
-		{
+		public void extraer(Double dineroExtraido)
+		{	
+			if(dineroExtraido<saldo)
+			{
 			saldo = saldo - dineroExtraido;
-			return saldo;
+			operacionDeExtracionEfectuada = true;
+			}
+			else
+			{
+				saldo = saldo - 0;
+				operacionDeExtracionEfectuada = false;
+			}
 		}
 		
-		public Double depositar(Double dineroDepositado)
+			
+		public void depositar(Double dineroDepositado)
 		{
 			saldo = saldo + dineroDepositado;
-			return saldo;		
 		}
 
+		
+		public Integer contarCantidadDeExtracciones()
+		{
+			Integer cantidadDeOperacionesExitosas;
+			 cantidadDeOperacionesExitosas = 0;
+			
+			if (this.operacionDeExtracionEfectuada.equals(true))
+			{
+				cantidadDeOperacionesExitosas++;
+				return cantidadDeOperacionesExitosas;
+			}
+			else
+			{
+				cantidadDeOperacionesExitosas = 0;
+				return cantidadDeOperacionesExitosas;
+			}
+			
+		}
+		
 }
