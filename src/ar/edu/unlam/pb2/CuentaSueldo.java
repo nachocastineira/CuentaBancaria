@@ -5,7 +5,7 @@ public class CuentaSueldo {
 		private String nombre;
 		private Double saldo;
 		private Integer dni;
-		private Boolean operacionDeExtracionEfectuada;
+		private Boolean operacionDeExtracionEfectuada = false;
 		
 							//constructores
 		CuentaSueldo (String nombre, Double saldo,  Integer dni)
@@ -62,11 +62,10 @@ public class CuentaSueldo {
 		}
 
 		
-		public Integer contarCantidadDeExtracciones()
+		public Integer contarCantidadDeExtracciones()  //CONTADOR NO FUNCIONA
 		{
-			Integer cantidadDeOperacionesExitosas;
-			 cantidadDeOperacionesExitosas = 0;
-			
+			Integer cantidadDeOperacionesExitosas = 0;
+			 		
 			if (this.operacionDeExtracionEfectuada.equals(true))
 			{
 				cantidadDeOperacionesExitosas++;
@@ -74,7 +73,6 @@ public class CuentaSueldo {
 			}
 			else
 			{
-				cantidadDeOperacionesExitosas = 0;
 				return cantidadDeOperacionesExitosas;
 			}
 			

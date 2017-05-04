@@ -22,7 +22,7 @@ public class CajaDeAhorros extends CuentaSueldo {  //heredo clase padre
 
 	
 	@Override
-	public void extraer (Double dineroExtraido)
+	public void extraer (Double dineroExtraido) //CORREGIRLO, NO FUNCIONA BIEN LA SOBREESCRITURA
 	{
 	
 		if (super.contarCantidadDeExtracciones().equals(5))
@@ -36,6 +36,14 @@ public class CajaDeAhorros extends CuentaSueldo {  //heredo clase padre
 		}
 		
 	}
+	
+//	@Override
+//	public void extraer (Double dineroExtraido) //ASI ANDA, PERO NO DESCUENTA LUEGO DE LA QUINTA EXTRACION, SOLO DANDO UN VALOR AL COSTO AD.
+//	{
+//		
+//		super.setSaldo((getSaldo() - dineroExtraido) - this.costoAdicionalLuegoDeQuintaExtraccion);
+//		
+//	}
 
 }
 
