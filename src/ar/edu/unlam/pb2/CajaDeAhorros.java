@@ -25,7 +25,7 @@ public class CajaDeAhorros extends CuentaSueldo {  //heredo clase padre
 	public void extraer (Double dineroExtraido) //CORREGIRLO, NO FUNCIONA BIEN LA SOBREESCRITURA
 	{
 	
-		if (super.contarCantidadDeExtracciones().equals(5))
+		if (super.mostrarCantidadDeExtraccionesEfectuadas().equals(5))
 		{	
 			super.setSaldo((getSaldo() - dineroExtraido) - this.costoAdicionalLuegoDeQuintaExtraccion);
 		}

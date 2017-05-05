@@ -5,7 +5,7 @@ public class CuentaSueldo {
 		private String nombre;
 		private Double saldo;
 		private Integer dni;
-		private Boolean operacionDeExtracionEfectuada = false;
+		private Integer operacionDeExtracionEfectuada = 0; // variable para el contador
 		
 							//constructores
 		CuentaSueldo (String nombre, Double saldo,  Integer dni)
@@ -41,41 +41,59 @@ public class CuentaSueldo {
 		}
 		
 					//metodos
+//		public void extraer(Double dineroExtraido)
+//		{	
+//			if(dineroExtraido<saldo)
+//			{
+//			saldo = saldo - dineroExtraido;
+//			}
+//			
+//			else
+//			{
+//				saldo = saldo - 0;
+//			}
+//		}
+//		
+//			
+//		public void depositar(Double dineroDepositado)
+//		{
+//			saldo = saldo + dineroDepositado;
+//		}
+//
+//		
+//		public Integer mostrarCantidadDeExtraccionesEfectuadas()
+//		{
+//			return operacionDeExtracionEfectuada;
+//		}
+		
+		
+		//metodos DE PRUEBA........
 		public void extraer(Double dineroExtraido)
 		{	
 			if(dineroExtraido<saldo)
 			{
 			saldo = saldo - dineroExtraido;
-			operacionDeExtracionEfectuada = true;
+			this.operacionDeExtracionEfectuada++; // si la operacion es exitosa el contador subirá de 1 en 1
 			}
+			
 			else
 			{
 				saldo = saldo - 0;
-				operacionDeExtracionEfectuada = false;
 			}
 		}
 		
 			
-		public void depositar(Double dineroDepositado)
-		{
+	public void depositar(Double dineroDepositado)
+	{
 			saldo = saldo + dineroDepositado;
 		}
 
 		
-		public Integer contarCantidadDeExtracciones()  //CONTADOR NO FUNCIONA
+	public Integer mostrarCantidadDeExtraccionesEfectuadas()   //devuelvo la cantidad de operaciones exitosas
 		{
-			Integer cantidadDeOperacionesExitosas = 0;
-			 		
-			if (this.operacionDeExtracionEfectuada.equals(true))
-			{
-				cantidadDeOperacionesExitosas++;
-				return cantidadDeOperacionesExitosas;
-			}
-			else
-			{
-				return cantidadDeOperacionesExitosas;
-			}
-			
-		}
+		return this.operacionDeExtracionEfectuada;
+	}
+		
+	
 		
 }

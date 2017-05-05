@@ -76,16 +76,17 @@ public class TestCuentaBancaria {
 	}
 	
 	
-//	@Test
-//	public void testeandoContador()
-//	{
-//		CuentaSueldo miCuentaSueldo = new CuentaSueldo ("Pepe", 100.0, 12345678);
-//		miCuentaSueldo.extraer(10.0);
-//		miCuentaSueldo.extraer(10.0); 
-//		miCuentaSueldo.extraer(10.0); 
-//		assertEquals(miCuentaSueldo.contarCantidadDeExtracciones(), 3.0, 0.0);  //EL CONTADOR NO FUNCIONA
-//		
-//	}
+	@Test
+	public void testeandoContador()   // el contador ya funciona
+	{
+		CuentaSueldo miCuentaSueldo = new CuentaSueldo ("Pepe", 100.0, 12345678);
+		miCuentaSueldo.extraer(10.0);
+		miCuentaSueldo.extraer(10.0); 
+		miCuentaSueldo.extraer(10.0);
+		miCuentaSueldo.extraer(10.0); 
+		assertEquals(miCuentaSueldo.mostrarCantidadDeExtraccionesEfectuadas(), 4, 0.0); 
+		
+	}
 	
 	
 }
