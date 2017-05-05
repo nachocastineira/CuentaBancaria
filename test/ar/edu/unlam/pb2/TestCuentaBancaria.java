@@ -50,7 +50,7 @@ public class TestCuentaBancaria {
 	@Test
 	public void testQueDepositaDineroEnCajaDeAhorros()    //OK
 	{
-		CajaDeAhorros miCajaDeAhorros = new CajaDeAhorros ("Pepe", 2.0, 12345678, 6);
+		CajaDeAhorros miCajaDeAhorros = new CajaDeAhorros ("Pepe", 2.0, 12345678);
 		miCajaDeAhorros.depositar(150.0);
 		assertEquals(miCajaDeAhorros.getSaldo(), 152.0, 0.0);
 	}
@@ -58,15 +58,26 @@ public class TestCuentaBancaria {
 	@Test
 	public void testQueExtraeDineroEnCajaDeAhorros()     //OK
 	{ 
-		CajaDeAhorros miCajaDeAhorros = new CajaDeAhorros ("Pepe", 100.0, 12345678, 6);
+		CajaDeAhorros miCajaDeAhorros = new CajaDeAhorros ("Pepe", 100.0, 12345678);
 		miCajaDeAhorros.extraer(10.0);
 		assertEquals(miCajaDeAhorros.getSaldo(), 90.0, 0.0);
 	}
 	
+	
 	@Test
-	public void testQueExtraeDineroConCostoAdicionalEnCajaDeAhorros()     //Anda pero no se descuenta el costo extra (problema en el contador)
+	public void testQueExtraeDineroSinTenerSaldoEnCajaDeAhorros()     //OK
 	{ 
-		CajaDeAhorros miCajaDeAhorros = new CajaDeAhorros ("Pepe", 100.0, 12345678, 6);
+		CajaDeAhorros miCajaDeAhorros = new CajaDeAhorros ("Pepe", 100.0, 12345678);
+		miCajaDeAhorros.extraer(300.0);
+		assertEquals(miCajaDeAhorros.getSaldo(), 100.0, 0.0);  //el saldo es el mismo, no se extrae nada porque no tiene saldo suficiente
+	}
+	
+	
+	@Test
+	public void testQueExtraeDineroConCostoAdicionalEnCajaDeAhorros()     //Anda pero no se descuenta el costo extra luego de 5° extraccion (problema en el contador)
+	{ 
+		CajaDeAhorros miCajaDeAhorros = new CajaDeAhorros ("Pepe", 100.0, 12345678);
+		miCajaDeAhorros.setCostoAdicionalLuegoDeQuintaExtraccion(6);
 		miCajaDeAhorros.extraer(10.0);
 		miCajaDeAhorros.extraer(10.0);
 		miCajaDeAhorros.extraer(10.0);
@@ -83,8 +94,9 @@ public class TestCuentaBancaria {
 		miCuentaSueldo.extraer(10.0);
 		miCuentaSueldo.extraer(10.0); 
 		miCuentaSueldo.extraer(10.0);
+		miCuentaSueldo.extraer(10.0);
 		miCuentaSueldo.extraer(10.0); 
-		assertEquals(miCuentaSueldo.mostrarCantidadDeExtraccionesEfectuadas(), 4, 0.0); 
+		assertEquals(miCuentaSueldo.mostrarCantidadDeExtraccionesEfectuadas(), 5, 0); 
 		
 	}
 	

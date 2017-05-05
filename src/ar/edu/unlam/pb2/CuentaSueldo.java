@@ -40,7 +40,7 @@ public class CuentaSueldo {
 			this.dni = dni;
 		}
 		
-					//metodos
+					//metodos viejo
 //		public void extraer(Double dineroExtraido)
 //		{	
 //			if(dineroExtraido<saldo)
@@ -67,19 +67,15 @@ public class CuentaSueldo {
 //		}
 		
 		
-		//metodos DE PRUEBA........
+		//metodos NUEVO
 		public void extraer(Double dineroExtraido)
 		{	
-			if(dineroExtraido<saldo)
+			if(dineroExtraido<saldo)   //solo se extrae si el valor de la extraccion es menor al saldo disponible
 			{
 			saldo = saldo - dineroExtraido;
 			this.operacionDeExtracionEfectuada++; // si la operacion es exitosa el contador subirá de 1 en 1
 			}
 			
-			else
-			{
-				saldo = saldo - 0;
-			}
 		}
 		
 			
