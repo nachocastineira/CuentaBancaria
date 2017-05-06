@@ -6,86 +6,60 @@ public class CuentaSueldo {
 		private Double saldo;
 		private Integer dni;
 		private Integer operacionDeExtracionEfectuada = 0; // variable para el contador
+
+					//constructores
+CuentaSueldo (String nombre, Double saldo,  Integer dni)
+{
+	this.nombre = nombre;
+	this.saldo = saldo;
+	this.dni = dni;
+}
+
+				//getters y setter
+public String getNombre() {
+	return nombre;
+}
+
+public void setNombre(String nombre) {
+	this.nombre = nombre;
+}
+
+public Double getSaldo() {
+	return saldo;
+}
+
+public void setSaldo(Double saldo) {
+	this.saldo = saldo;
+}
+
+public Integer getDni() {
+	return dni;
+}
+
+public void setDni(Integer dni) {
+	this.dni = dni;
+}
+
+
+//metodos 
+public void extraer(Double dineroExtraido)
+{	
+	if(dineroExtraido<=saldo)   //solo se extrae si el valor de la extraccion es menor al saldo disponible
+   {
+		saldo = saldo - dineroExtraido;
+		this.operacionDeExtracionEfectuada++; // si la operacion es exitosa el contador subirá de 1 en 1
+	}
+	
+}
+
 		
-							//constructores
-		CuentaSueldo (String nombre, Double saldo,  Integer dni)
-		{
-			this.nombre = nombre;
-			this.saldo = saldo;
-			this.dni = dni;
-		}
-
-						//getters y setter
-		public String getNombre() {
-			return nombre;
-		}
-
-		public void setNombre(String nombre) {
-			this.nombre = nombre;
-		}
-
-		public Double getSaldo() {
-			return saldo;
-		}
-
-		public void setSaldo(Double saldo) {
-			this.saldo = saldo;
-		}
-
-		public Integer getDni() {
-			return dni;
-		}
-
-		public void setDni(Integer dni) {
-			this.dni = dni;
-		}
-		
-					//metodos viejo
-//		public void extraer(Double dineroExtraido)
-//		{	
-//			if(dineroExtraido<saldo)
-//			{
-//			saldo = saldo - dineroExtraido;
-//			}
-//			
-//			else
-//			{
-//				saldo = saldo - 0;
-//			}
-//		}
-//		
-//			
-//		public void depositar(Double dineroDepositado)
-//		{
-//			saldo = saldo + dineroDepositado;
-//		}
-//
-//		
-//		public Integer mostrarCantidadDeExtraccionesEfectuadas()
-//		{
-//			return operacionDeExtracionEfectuada;
-//		}
-		
-		
-		//metodos NUEVO
-		public void extraer(Double dineroExtraido)
-		{	
-			if(dineroExtraido<saldo)   //solo se extrae si el valor de la extraccion es menor al saldo disponible
-			{
-			saldo = saldo - dineroExtraido;
-			this.operacionDeExtracionEfectuada++; // si la operacion es exitosa el contador subirá de 1 en 1
-			}
-			
-		}
-		
-			
-	public void depositar(Double dineroDepositado)
+public void depositar(Double dineroDepositado)
 	{
-			saldo = saldo + dineroDepositado;
-		}
+		saldo = saldo + dineroDepositado;
+	}
 
-		
-	public Integer mostrarCantidadDeExtraccionesEfectuadas()   //devuelvo la cantidad de operaciones exitosas
+	
+public Integer mostrarCantidadDeExtraccionesEfectuadas()   //devuelvo la cantidad de operaciones exitosas
 		{
 		return this.operacionDeExtracionEfectuada;
 	}
