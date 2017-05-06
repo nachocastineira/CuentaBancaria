@@ -12,6 +12,8 @@ public class CuentaCorriente extends CuentaSueldo {
 		this.comisionExtra = comisionExtra;
 		this.sobregiro = sobregiro;
 	}
+	
+	// PROBAR CONSTRUCTOR VACIO, PARA NO LLENARLO SIEMPRE EN LOS TEST//
 
 	public Double getComisionExtra() {
 		return comisionExtra;
@@ -42,11 +44,12 @@ public class CuentaCorriente extends CuentaSueldo {
 	{
 		if (dineroExtraido>super.getSaldo())  //si el dinero a extraer es mayor al saldo disponible habrá sobregiro (limite adicional del banco) despues se devolvera con interes
 		{
-			this.setSaldoMasSobregiro(getSaldo()+this.sobregiro);
-			super.setSaldo(getSaldoMasSobregiro()-dineroExtraido);
-							
-			
+			this.setSaldoMasSobregiro(super.getSaldo()+this.sobregiro);  //sumo mi saldo mas sobregiro que brinda el banco
+			super.setSaldo(this.getSaldoMasSobregiro()-dineroExtraido);  //hago la extraccion
+			this.setSobregiro((super.getSaldo()-this.sobregiro)*this.getComisionExtra());  //el sobregiro ha sido usado y tendre que pagar lo prestado
+										
 		}
+		
 		else
 		{
 			super.setSaldo(getSaldo() - dineroExtraido);  //sino la extraccion sera normal

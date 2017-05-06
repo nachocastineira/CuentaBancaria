@@ -100,11 +100,12 @@ public void testeandoContador()   // el contador ya funciona
 @Test
 public void testExtraDineroConSobregiroEnCuentaCorriente()
 {
-	CuentaCorriente  miCuentaCorriente = new CuentaCorriente ("Pepe", 100d, 12345, 1d, 1d);
+	CuentaCorriente  miCuentaCorriente = new CuentaCorriente ("Pepe", 100d, 12345, 1.05 , 100d); //(nombre, saldo, dni, comisionExtra, sobregiro) 
 	miCuentaCorriente.depositar(100d);
 	miCuentaCorriente.setSobregiro(100d);
 	miCuentaCorriente.extraer(250d);
-	assertEquals(miCuentaCorriente.getSaldo(), 50d, 0d); //todavia sin interes
+	assertEquals(miCuentaCorriente.getSaldo(), 50d, 0d); //todavia sin interes //buscar sin hay errores aca
+	assertEquals(miCuentaCorriente.getSobregiro(), -52.5, 0d); //me muestra el negativo del sobregiro, es lo debe el cliente
 }
 
 @Test
