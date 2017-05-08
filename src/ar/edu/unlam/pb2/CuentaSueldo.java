@@ -5,7 +5,6 @@ public class CuentaSueldo {
 		private String nombre;
 		private Double saldo;
 		private Integer dni;
-		private Integer operacionDeExtracionEfectuada = 0; // variable para el contador
 
 					//constructores
 CuentaSueldo (String nombre, Double saldo,  Integer dni)
@@ -40,14 +39,6 @@ public void setDni(Integer dni) {
 	this.dni = dni;
 }
 
-public Integer getOperacionDeExtracionEfectuada() {
-	return operacionDeExtracionEfectuada;
-}
-
-public void setOperacionDeExtracionEfectuada(
-		Integer operacionDeExtracionEfectuada) {
-	this.operacionDeExtracionEfectuada = operacionDeExtracionEfectuada;
-}
 
 //metodos 
 public void extraer(Double dineroExtraido)

@@ -31,32 +31,9 @@ public class CajaDeAhorros extends CuentaSueldo {  //heredo clase padre
 		this.cantidadMaximaDeExtraccionSinCostoExtra = cantidadMaximaDeExtraccionSinCostoExtra;
 	}
 		
-	
-//	@Override
-//public void extraer (Double dineroExtraido) // este es el que andaa
-//{
-//	
-//	if (dineroExtraido<=super.getSaldo())  //solo se extrae si el valor de la extracción es menor al saldo disponible
-//{
-//			
-//		if (extraccionesEfectuadas<5)
-//		{
-//			super.extraer(dineroExtraido);	
-//			extraccionesEfectuadas++;
-//		}
-//
-//			
-//	else
-//			if (extraccionesEfectuadas>=5)
-//			{
-//				super.setSaldo(super.getSaldo() - dineroExtraido - 6);
-//			}
-//}
-//}	
-	
-	
+		
 	@Override
-public void extraer (Double dineroExtraido) // VERSION pulida
+public void extraer (Double dineroExtraido) 
 {
 	
 	if (dineroExtraido<=super.getSaldo())  //solo se extrae si el valor de la extracción es menor al saldo disponible
@@ -74,8 +51,7 @@ public void extraer (Double dineroExtraido) // VERSION pulida
 				super.setSaldo(super.getSaldo() - dineroExtraido - this.getCostoAdicionalLuegoDeQuintaExtraccion()); // le puedo setear costo extra
 			}
 }
-}	
-	
+}		
 	
 }
 

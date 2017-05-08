@@ -72,7 +72,7 @@ public void testQueExtraeDineroSinTenerSaldoEnCajaDeAhorros()     //OK
 }
 
 @Test
-public void testQueExtraeDineroConCostoAdicionalEnCajaDeAhorros()     //se descuenta el costo  extra despues de la  5 extraccion
+public void testQueExtraeDineroConCostoAdicionalEnCajaDeAhorros()     //se descuenta el costo  extra despues de la  4 extraccion
 { 
 	CajaDeAhorros miCajaDeAhorros = new CajaDeAhorros ("Pepe", 100d, 12345678);
 	miCajaDeAhorros.setCantidadMaximaDeExtraccionSinCostoExtra(4);
@@ -102,17 +102,17 @@ public void testQueExtraeDineroConCostoAdicionalEnCajaDeAhorros2()     //se desc
 	assertEquals(miCajaDeAhorros.getSaldo(),  18d, 0 );
 }
 
-
 @Test
 public void testExtraDineroConSobregiroEnCuentaCorriente()
 {
-	CuentaCorriente  miCuentaCorriente = new CuentaCorriente ("Pepe", 100d, 12345, 1.05 , 0d); //(nombre, saldo, dni, comisionExtra, sobregiro) 
+	CuentaCorriente  miCuentaCorriente = new CuentaCorriente ("Pepe", 100d, 12345, 0d , 0d); //(nombre, saldo, dni, comisionExtra, sobregiro) 
 	miCuentaCorriente.depositar(100d);
 	miCuentaCorriente.setSobregiro(100d);
+	miCuentaCorriente.setComisionExtra(1.05);  //comision del 5%
 	miCuentaCorriente.extraer(250d);
-//	miCuentaCorriente.extraer(55d);  //poner limite al sobregiro
-	assertEquals(miCuentaCorriente.getSaldo(), -52.5, 0d); //el saldo ya pasara a estar en negativo por el sobregiro utilizado + interes
-	assertEquals(miCuentaCorriente.getSobregiro(), -52.5, 0d); //me muestra el negativo del sobregiro, es lo debe el cliente
+	miCuentaCorriente.extraer(60d);  //NO TIENE LIMITE  EL SOBREGIRO 
+	assertEquals(miCuentaCorriente.getSaldo(), -118.12, 0.1); //el saldo ya pasara a estar en negativo por el sobregiro utilizado + interes
+	assertEquals(miCuentaCorriente.getSobregiro(), -118.12, 0.1); //me muestra el negativo del sobregiro, es lo debe el cliente
 }
 
 @Test
@@ -120,14 +120,9 @@ public void testExtraDineroSinSobregiroEnCuentaCorriente()
 {
 	CuentaCorriente  miCuentaCorriente = new CuentaCorriente ("Pepe", 100d, 12345, 1d, 1d);
 	miCuentaCorriente.depositar(100d);
-	miCuentaCorriente.extraer(101d);
-	assertEquals(miCuentaCorriente.getSaldo(), 99d, 0d); 
+	miCuentaCorriente.extraer(150d);
+	assertEquals(miCuentaCorriente.getSaldo(), 50d, 0d); 
 }
 
 	
-
-
-
-
-
 }
