@@ -59,8 +59,8 @@ public void testQueDepositaDineroEnCajaDeAhorros()    //OK
 public void testQueExtraeDineroEnCajaDeAhorros()     //OK
 { 
 	CajaDeAhorros miCajaDeAhorros = new CajaDeAhorros ("Pepe", 100.0, 12345678);
-	miCajaDeAhorros.extraer(10.0);
-	assertEquals(miCajaDeAhorros.getSaldo(), 90.0, 0.0);
+	miCajaDeAhorros.extraer(10d);
+	assertEquals(miCajaDeAhorros.getSaldo(), 90d, 0.0);
 }
 
 @Test
@@ -72,39 +72,46 @@ public void testQueExtraeDineroSinTenerSaldoEnCajaDeAhorros()     //OK
 }
 
 @Test
-public void testQueExtraeDineroConCostoAdicionalEnCajaDeAhorros()     //Anda pero no se descuenta el costo extra luego de 5° extraccion (problema en el contador)
+public void testQueExtraeDineroConCostoAdicionalEnCajaDeAhorros()     //se descuenta el costo  extra despues de la  5 extraccion
 { 
-	CajaDeAhorros miCajaDeAhorros = new CajaDeAhorros ("Pepe", 100.0, 12345678);
-	miCajaDeAhorros.setCostoAdicionalLuegoDeQuintaExtraccion(6);
-	miCajaDeAhorros.setCantidadMaximaDeExtraccionSinCostoExtra(5);
+	CajaDeAhorros miCajaDeAhorros = new CajaDeAhorros ("Pepe", 100d, 12345678);
+	miCajaDeAhorros.setCantidadMaximaDeExtraccionSinCostoExtra(4);
+	miCajaDeAhorros.setCostoAdicionalLuegoDeQuintaExtraccion(5d);
+	miCajaDeAhorros.extraer(10.0);  
 	miCajaDeAhorros.extraer(10.0);
 	miCajaDeAhorros.extraer(10.0);
 	miCajaDeAhorros.extraer(10.0);
 	miCajaDeAhorros.extraer(10.0);
 	miCajaDeAhorros.extraer(10.0);
-	assertEquals(miCajaDeAhorros.getSaldo(), 50.0, 0.0);
+	assertEquals(miCajaDeAhorros.getSaldo(),  30d, 0);
 }
 
 @Test
-public void testeandoContador()   // el contador ya funciona
-{
-	CuentaSueldo miCuentaSueldo = new CuentaSueldo ("Pepe", 100.0, 12345678);
-	miCuentaSueldo.extraer(10.0);
-	miCuentaSueldo.extraer(10.0); 
-	miCuentaSueldo.extraer(10.0);
-	miCuentaSueldo.extraer(10.0);
-	miCuentaSueldo.extraer(10.0); 
-	assertEquals(miCuentaSueldo.mostrarCantidadDeExtraccionesEfectuadas(), 5, 0); 	
+public void testQueExtraeDineroConCostoAdicionalEnCajaDeAhorros2()     //se descuenta el costo  extra despues de la  5 extraccion
+{ 
+	CajaDeAhorros miCajaDeAhorros = new CajaDeAhorros ("Pepe", 100d, 12345678);
+	miCajaDeAhorros.setCantidadMaximaDeExtraccionSinCostoExtra(5);
+	miCajaDeAhorros.setCostoAdicionalLuegoDeQuintaExtraccion(6d);
+	miCajaDeAhorros.extraer(10.0);  
+	miCajaDeAhorros.extraer(10.0);
+	miCajaDeAhorros.extraer(10.0);
+	miCajaDeAhorros.extraer(10.0);
+	miCajaDeAhorros.extraer(10.0);
+	miCajaDeAhorros.extraer(10.0);
+	miCajaDeAhorros.extraer(10.0);
+	assertEquals(miCajaDeAhorros.getSaldo(),  18d, 0 );
 }
+
 
 @Test
 public void testExtraDineroConSobregiroEnCuentaCorriente()
 {
-	CuentaCorriente  miCuentaCorriente = new CuentaCorriente ("Pepe", 100d, 12345, 1.05 , 100d); //(nombre, saldo, dni, comisionExtra, sobregiro) 
+	CuentaCorriente  miCuentaCorriente = new CuentaCorriente ("Pepe", 100d, 12345, 1.05 , 0d); //(nombre, saldo, dni, comisionExtra, sobregiro) 
 	miCuentaCorriente.depositar(100d);
 	miCuentaCorriente.setSobregiro(100d);
 	miCuentaCorriente.extraer(250d);
-	assertEquals(miCuentaCorriente.getSaldo(), 50d, 0d); //todavia sin interes //buscar sin hay errores aca
+//	miCuentaCorriente.extraer(55d);  //poner limite al sobregiro
+	assertEquals(miCuentaCorriente.getSaldo(), -52.5, 0d); //el saldo ya pasara a estar en negativo por el sobregiro utilizado + interes
 	assertEquals(miCuentaCorriente.getSobregiro(), -52.5, 0d); //me muestra el negativo del sobregiro, es lo debe el cliente
 }
 

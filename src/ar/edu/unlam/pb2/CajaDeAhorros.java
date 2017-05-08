@@ -2,21 +2,23 @@ package ar.edu.unlam.pb2;
 
 public class CajaDeAhorros extends CuentaSueldo {  //heredo clase padre
 	
-	private Integer costoAdicionalLuegoDeQuintaExtraccion = 0;
-	private Integer cantidadMaximaDeExtraccionSinCostoExtra = 0;
+		private Double costoAdicionalLuegoDeQuintaExtraccion = 0d;
+		private Integer cantidadMaximaDeExtraccionSinCostoExtra = 0;
+		private Integer extraccionesEfectuadas ;
 	
 	
 	public CajaDeAhorros (String nombre, Double saldo,  Integer dni)
 	{
 		super(nombre, saldo, dni);
+		this.extraccionesEfectuadas = 0;
 	}
-
 	
-	public Integer getCostoAdicionalLuegoDeQuintaExtraccion() {
+	
+	public Double getCostoAdicionalLuegoDeQuintaExtraccion() {
 		return costoAdicionalLuegoDeQuintaExtraccion;
 	}
 
-	public void setCostoAdicionalLuegoDeQuintaExtraccion(Integer costoAdicionalLuegoDeQuintaExtraccion) {
+	public void setCostoAdicionalLuegoDeQuintaExtraccion(Double costoAdicionalLuegoDeQuintaExtraccion) {
 		this.costoAdicionalLuegoDeQuintaExtraccion = costoAdicionalLuegoDeQuintaExtraccion;
 	}
 		
@@ -24,33 +26,59 @@ public class CajaDeAhorros extends CuentaSueldo {  //heredo clase padre
 		return cantidadMaximaDeExtraccionSinCostoExtra;
 	}
 
-
 	public void setCantidadMaximaDeExtraccionSinCostoExtra(
 			Integer cantidadMaximaDeExtraccionSinCostoExtra) {
 		this.cantidadMaximaDeExtraccionSinCostoExtra = cantidadMaximaDeExtraccionSinCostoExtra;
 	}
-
-
+		
+	
+//	@Override
+//public void extraer (Double dineroExtraido) // este es el que andaa
+//{
+//	
+//	if (dineroExtraido<=super.getSaldo())  //solo se extrae si el valor de la extracción es menor al saldo disponible
+//{
+//			
+//		if (extraccionesEfectuadas<5)
+//		{
+//			super.extraer(dineroExtraido);	
+//			extraccionesEfectuadas++;
+//		}
+//
+//			
+//	else
+//			if (extraccionesEfectuadas>=5)
+//			{
+//				super.setSaldo(super.getSaldo() - dineroExtraido - 6);
+//			}
+//}
+//}	
+	
+	
 	@Override
-public void extraer (Double dineroExtraido) //CORREGIRLO, extrae el dinero pero no descuenta luego de la 5 extraccion  //¡¡no descuenta porque sobreescribi el contador!!
+public void extraer (Double dineroExtraido) // VERSION pulida
 {
+	
 	if (dineroExtraido<=super.getSaldo())  //solo se extrae si el valor de la extracción es menor al saldo disponible
 {
-
-		if (super.mostrarCantidadDeExtraccionesEfectuadas()>=(this.cantidadMaximaDeExtraccionSinCostoExtra))
+			
+		if (extraccionesEfectuadas<this.getCantidadMaximaDeExtraccionSinCostoExtra()) //le puedo setear la cantidad maxima de ext. sin costo extra
 		{
-			super.setSaldo((getSaldo() - dineroExtraido) - this.costoAdicionalLuegoDeQuintaExtraccion);
+			super.extraer(dineroExtraido);	
+			extraccionesEfectuadas++;
 		}
-		
+			
 	else
-		{
-			super.setSaldo(getSaldo() - dineroExtraido);
-		}
-}		
+			if (extraccionesEfectuadas>=this.getCantidadMaximaDeExtraccionSinCostoExtra())
+			{
+				super.setSaldo(super.getSaldo() - dineroExtraido - this.getCostoAdicionalLuegoDeQuintaExtraccion()); // le puedo setear costo extra
+			}
 }
+}	
 	
-
+	
 }
+
 
 
 

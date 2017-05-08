@@ -40,6 +40,14 @@ public void setDni(Integer dni) {
 	this.dni = dni;
 }
 
+public Integer getOperacionDeExtracionEfectuada() {
+	return operacionDeExtracionEfectuada;
+}
+
+public void setOperacionDeExtracionEfectuada(
+		Integer operacionDeExtracionEfectuada) {
+	this.operacionDeExtracionEfectuada = operacionDeExtracionEfectuada;
+}
 
 //metodos 
 public void extraer(Double dineroExtraido)
@@ -47,23 +55,12 @@ public void extraer(Double dineroExtraido)
 	if(dineroExtraido<=saldo)   //solo se extrae si el valor de la extraccion es menor al saldo disponible
    {
 		saldo = saldo - dineroExtraido;
-		this.operacionDeExtracionEfectuada++; // si la operacion es exitosa el contador subirá de 1 en 1
-	}
-	
+	}	
 }
-
 		
 public void depositar(Double dineroDepositado)
 	{
 		saldo = saldo + dineroDepositado;
 	}
-
-	
-public Integer mostrarCantidadDeExtraccionesEfectuadas()   //devuelvo la cantidad de operaciones exitosas
-		{
-		return this.operacionDeExtracionEfectuada;
-	}
-		
-	
-		
+			
 }

@@ -39,15 +39,24 @@ public class CuentaCorriente extends CuentaSueldo {
 		this.saldoMasSobregiro = saldoMasSobregiro;
 	}
 
+	// ERRORES A CORREGIR: No puedo poner limite a sobregiro, siempre me deja seguir extrayendo dinero	
+	
 	@Override
-	public void extraer (Double dineroExtraido)  //EN CONSTRUCCION, esta bien --> falta aplicar interes al saldo
+	public void extraer (Double dineroExtraido) 
 	{
 		if (dineroExtraido>super.getSaldo())  //si el dinero a extraer es mayor al saldo disponible habrá sobregiro (limite adicional del banco) despues se devolvera con interes
 		{
 			this.setSaldoMasSobregiro(super.getSaldo()+this.sobregiro);  //sumo mi saldo mas sobregiro que brinda el banco
+//			if (dineroExtraido<=this.getSaldoMasSobregiro())
+//			{
 			super.setSaldo(this.getSaldoMasSobregiro()-dineroExtraido);  //hago la extraccion
 			this.setSobregiro((super.getSaldo()-this.sobregiro)*this.getComisionExtra());  //el sobregiro ha sido usado y tendre que pagar lo prestado
-										
+			super.setSaldo(this.getSobregiro());  //saldo en negativo por el sobregiro utilizado
+//			}
+//			else
+//			{
+//				super.setSaldo(this.getSaldoMasSobregiro()-0);
+//			}
 		}
 		
 		else
